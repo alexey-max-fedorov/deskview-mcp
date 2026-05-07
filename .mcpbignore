@@ -1,5 +1,7 @@
 src/
 swift/
+scripts/
+.nm-dev/
 node_modules/.cache/
 *.log
 .DS_Store

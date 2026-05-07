@@ -7,7 +7,7 @@
     "build:server": "tsc",
     "build:swift": "cd swift && ./build.sh",
     "build": "pnpm build:swift && pnpm build:server",
-    "package": "pnpm build && pnpm dlx @anthropic-ai/mcpb pack",
+    "package": "pnpm build && bash scripts/package.sh",
     "dev": "tsx src/index.ts",
     "test": "vitest run",
     "test:watch": "vitest",
