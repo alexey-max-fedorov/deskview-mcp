@@ -65,7 +65,6 @@ final class StableCapturer: NSObject, AVCaptureVideoDataOutputSampleBufferDelega
             let motion = StableDetector.motionFraction(prev: prev, curr: curr, deltaThreshold: 15)
             let consec = counter.update(motion: motion, threshold: threshold)
             let stableMs = consec * frameIntervalMs
-            logStderr("stable: motion=\(String(format: "%.4f", motion)) stableMs=\(stableMs)")
             if stableMs >= stabilityDurationMs, let f = lastFullFrame {
                 pendingResult = (f.base64, f.w, f.h, "success")
                 semaphore.signal()

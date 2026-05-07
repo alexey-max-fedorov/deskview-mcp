@@ -31,7 +31,7 @@ export async function runCapture(
   }
   if (!existsSync(binPath)) {
     return errorResponse(
-      `Deskview capture binary not found at ${binPath}. The extension bundle may be corrupted; reinstall it.`
+      "Deskview capture binary not found. The extension bundle may be corrupted; reinstall it."
     );
   }
 
