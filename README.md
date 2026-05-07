@@ -110,4 +110,8 @@ All detection runs on-device. Deskview MCP makes no network calls and collects n
 
 ## License
 
-MIT. Copyright (c) 2024 Alexey Fedorov.
+Copyright (c) 2026 Alexey Fedorov. All rights reserved.
+
+Released under the [PolyForm Noncommercial License 1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0/) — free for personal, research, educational, and other noncommercial use. For commercial use, contact alexey.max.fedorov@gmail.com.
+
+The software is provided "as is", without warranty of any kind. See `LICENSE` for the full disclaimer of liability.

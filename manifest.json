@@ -19,7 +19,7 @@
   "support": "https://github.com/alexey-max-fedorov/deskview-mcp/issues",
   "icon": "icon.png",
   "keywords": ["camera", "desk-view", "continuity-camera", "vision", "macos", "agentic"],
-  "license": "MIT",
+  "license": "PolyForm-Noncommercial-1.0.0",
   "server": {
     "type": "node",
     "entry_point": "server/index.js",
