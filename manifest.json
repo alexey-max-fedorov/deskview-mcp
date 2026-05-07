@@ -1,0 +1,55 @@
+{
+  "manifest_version": "0.3",
+  "name": "deskview-mcp",
+  "display_name": "Deskview MCP",
+  "version": "1.0.0",
+  "description": "Direct access to the iPhone Continuity Camera Desk View feed for capturing physical workspace frames.",
+  "long_description": "Deskview MCP gives Claude three tools for capturing the user's desk through the iPhone Continuity Camera overhead view. Capture instantly, wait for the scene to stabilize before capturing, or wait for a specific hand gesture before capturing. All detection runs natively on-device using AVFoundation and the Vision framework, so wait operations cost zero tokens until the actual frame is delivered.",
+  "author": {
+    "name": "Alexey Fedorov",
+    "email": "alexey.max.fedorov@gmail.com",
+    "url": "https://github.com/alexey-max-fedorov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexey-max-fedorov/deskview-mcp"
+  },
+  "homepage": "https://github.com/alexey-max-fedorov/deskview-mcp",
+  "documentation": "https://github.com/alexey-max-fedorov/deskview-mcp#readme",
+  "support": "https://github.com/alexey-max-fedorov/deskview-mcp/issues",
+  "icon": "icon.png",
+  "keywords": ["camera", "desk-view", "continuity-camera", "vision", "macos", "agentic"],
+  "license": "MIT",
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.js"],
+      "env": {
+        "DESKVIEW_BIN": "${__dirname}/bin/deskview-capture"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "capture_desk_view",
+      "description": "Capture a single frame from the Desk View camera right now."
+    },
+    {
+      "name": "capture_on_stable",
+      "description": "Wait until the scene stabilizes (motion stops for the specified duration), then capture one frame."
+    },
+    {
+      "name": "capture_on_gesture",
+      "description": "Wait until the specified hand gesture is detected, then capture one frame."
+    }
+  ],
+  "compatibility": {
+    "claude_desktop": ">=1.0.0",
+    "platforms": ["darwin"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}
