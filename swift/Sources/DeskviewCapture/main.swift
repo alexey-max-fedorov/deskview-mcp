@@ -51,14 +51,35 @@ struct Stable: ParsableCommand {
     @Option(name: .long) var sensitivity: String = "medium"
 
     func run() throws {
-        logStderr("stable: stub duration=\(duration) timeout=\(timeout) sensitivity=\(sensitivity)")
-        let metadata = CaptureMetadata(
-            width: 0, height: 0,
-            captured_at: ISO8601DateFormatter().string(from: Date()),
-            wait_duration_ms: 0,
-            device_name: "stub"
-        )
-        emit(CaptureResult.success(image: "", metadata: metadata))
+        let session = DeskViewSession()
+        do {
+            try session.ensureCameraAuthorization()
+            try session.discoverDevice()
+            let cap = StableCapturer(
+                session: session,
+                stabilityDurationMs: duration,
+                timeoutMs: timeout,
+                sensitivity: sensitivity
+            )
+            let r = try cap.run()
+            let metadata = CaptureMetadata(
+                width: r.w, height: r.h,
+                captured_at: ISO8601DateFormatter().string(from: Date()),
+                wait_duration_ms: r.waitMs,
+                device_name: r.deviceName
+            )
+            if r.status == "success" {
+                emit(CaptureResult.success(image: r.base64, metadata: metadata))
+            } else {
+                emit(CaptureResult.timeout(image: r.base64, metadata: metadata))
+            }
+        } catch let err as DeskviewError {
+            logStderr("stable failed: \(err.message)")
+            emit(CaptureResult.error(err))
+        } catch {
+            logStderr("stable unexpected error: \(error)")
+            emit(CaptureResult.error(.internalError("\(error)")))
+        }
     }
 }
 
