@@ -16,14 +16,27 @@ struct Snapshot: ParsableCommand {
     )
 
     func run() throws {
-        logStderr("snapshot: stub")
-        let metadata = CaptureMetadata(
-            width: 0, height: 0,
-            captured_at: ISO8601DateFormatter().string(from: Date()),
-            wait_duration_ms: 0,
-            device_name: "stub"
-        )
-        emit(CaptureResult.success(image: "", metadata: metadata))
+        let session = DeskViewSession()
+        do {
+            try session.ensureCameraAuthorization()
+            try session.discoverDevice()
+            let capturer = SnapshotCapturer(session: session)
+            let cap = try capturer.capture(timeoutMs: 5000)
+            let metadata = CaptureMetadata(
+                width: cap.width,
+                height: cap.height,
+                captured_at: ISO8601DateFormatter().string(from: Date()),
+                wait_duration_ms: cap.waitMs,
+                device_name: cap.deviceName
+            )
+            emit(CaptureResult.success(image: cap.base64, metadata: metadata))
+        } catch let err as DeskviewError {
+            logStderr("snapshot failed: \(err.message)")
+            emit(CaptureResult.error(err))
+        } catch {
+            logStderr("snapshot unexpected error: \(error)")
+            emit(CaptureResult.error(.internalError("\(error)")))
+        }
     }
 }
 
