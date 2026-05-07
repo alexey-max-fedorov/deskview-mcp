@@ -94,14 +94,33 @@ struct Gesture: ParsableCommand {
     @Option(name: .long) var timeout: Int = 300000
 
     func run() throws {
-        logStderr("gesture: stub type=\(type) hold=\(hold) timeout=\(timeout)")
-        let metadata = CaptureMetadata(
-            width: 0, height: 0,
-            captured_at: ISO8601DateFormatter().string(from: Date()),
-            wait_duration_ms: 0,
-            device_name: "stub"
-        )
-        emit(CaptureResult.success(image: "", metadata: metadata))
+        guard let kind = GestureKind(rawValue: type) else {
+            emit(CaptureResult.error(.internalError("unknown gesture type: \(type)")))
+            return
+        }
+        let session = DeskViewSession()
+        do {
+            try session.ensureCameraAuthorization()
+            try session.discoverDevice()
+            let cap = GestureCapturer(session: session, kind: kind, holdMs: hold, timeoutMs: timeout)
+            let r = try cap.run()
+            let metadata = CaptureMetadata(
+                width: r.w, height: r.h,
+                captured_at: ISO8601DateFormatter().string(from: Date()),
+                wait_duration_ms: r.waitMs,
+                device_name: r.deviceName
+            )
+            emit(CaptureResult.success(image: r.base64, metadata: metadata))
+        } catch DeskviewError.timeout {
+            logStderr("gesture: timeout reached")
+            emit(CaptureResult.error(.timeout))
+        } catch let err as DeskviewError {
+            logStderr("gesture failed: \(err.message)")
+            emit(CaptureResult.error(err))
+        } catch {
+            logStderr("gesture unexpected error: \(error)")
+            emit(CaptureResult.error(.internalError("\(error)")))
+        }
     }
 }
 
