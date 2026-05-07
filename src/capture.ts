@@ -179,7 +179,7 @@ function mapResult(r: SwiftResult): McpToolResponse {
 
   return {
     content: [
-      { type: "image", data: r.image_base64, mimeType: "image/png" },
+      { type: "image", data: r.image_base64, mimeType: "image/jpeg" },
       { type: "text", text },
     ],
   };

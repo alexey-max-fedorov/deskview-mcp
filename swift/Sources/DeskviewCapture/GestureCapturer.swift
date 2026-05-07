@@ -44,7 +44,7 @@ final class GestureCapturer: NSObject, AVCaptureVideoDataOutputSampleBufferDeleg
                        from connection: AVCaptureConnection) {
         guard pendingResult == nil else { return }
 
-        if let png = try? ImageEncoder.pngBase64(from: sampleBuffer) {
+        if let png = try? ImageEncoder.jpegBase64(from: sampleBuffer) {
             lastFullFrame = (png.base64, png.width, png.height)
         }
 

@@ -54,7 +54,7 @@ final class StableCapturer: NSObject, AVCaptureVideoDataOutputSampleBufferDelega
         guard pendingResult == nil else { return }
 
         // Always keep the most recent full-resolution frame for fallback.
-        if let png = try? ImageEncoder.pngBase64(from: sampleBuffer) {
+        if let png = try? ImageEncoder.jpegBase64(from: sampleBuffer) {
             lastFullFrame = (png.base64, png.width, png.height)
         }
 

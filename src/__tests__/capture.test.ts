@@ -13,7 +13,7 @@ describe("runCapture", () => {
     });
     expect(result.isError).toBeFalsy();
     expect(result.content).toHaveLength(2);
-    expect(result.content[0]).toMatchObject({ type: "image", mimeType: "image/png" });
+    expect(result.content[0]).toMatchObject({ type: "image", mimeType: "image/jpeg" });
     expect((result.content[0] as { data: string }).data.length).toBeGreaterThan(20);
     expect(result.content[1]).toMatchObject({ type: "text" });
     expect((result.content[1] as { text: string }).text).toContain("1920x1440");

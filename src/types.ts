@@ -26,7 +26,7 @@ export interface SwiftResult {
 export interface ImageContent {
   type: "image";
   data: string;
-  mimeType: "image/png";
+  mimeType: "image/jpeg";
 }
 
 export interface TextContent {

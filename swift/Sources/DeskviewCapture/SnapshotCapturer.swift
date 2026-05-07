@@ -36,7 +36,7 @@ final class SnapshotCapturer: NSObject, AVCaptureVideoDataOutputSampleBufferDele
         guard !didCapture else { return }
         didCapture = true
         do {
-            captured = try ImageEncoder.pngBase64(from: sampleBuffer)
+            captured = try ImageEncoder.jpegBase64(from: sampleBuffer)
         } catch let err as DeskviewError {
             captureError = err
         } catch {
