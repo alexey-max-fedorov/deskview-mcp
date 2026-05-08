@@ -90,6 +90,25 @@ your licenses to anyone else, or prevent the licensor from
 granting licenses to anyone else.  These terms do not imply
 any other licenses.
 
+## Prohibited Uses
+
+Notwithstanding any permitted purpose under these terms, you
+may not use the software, in whole or in part, for:
+
+1. **Autonomous surveillance**: any system that monitors,
+tracks, or identifies individuals in an automated or
+semi-automated manner without their knowledge and ongoing
+consent.
+
+2. **Autonomous weapons**: any system designed to select and
+engage targets with lethal or non-lethal force without
+meaningful human control over each individual targeting
+decision.
+
+Use of the software for either purpose immediately and
+permanently terminates all licenses granted to you under
+these terms.
+
 ## Patent Defense
 
 If you make any written claim that the software infringes or
