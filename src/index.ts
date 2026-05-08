@@ -15,7 +15,7 @@ import type { ServerResult } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolName } from "./types.js";
 
 const server = new Server(
-  { name: "deskview-mcp", version: "1.0.0" },
+  { name: "deskview-mcp", version: "1.2.0" },
   { capabilities: { tools: {} } }
 );
 

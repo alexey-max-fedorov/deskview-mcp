@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "deskview-mcp",
   "display_name": "Deskview MCP",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Direct access to the iPhone Continuity Camera Desk View feed for capturing physical workspace frames.",
   "long_description": "Deskview MCP gives Claude three tools for capturing the user's desk through the iPhone Continuity Camera overhead view. Capture instantly, wait for the scene to stabilize before capturing, or wait for a specific hand gesture before capturing. All detection runs natively on-device using AVFoundation and the Vision framework, so wait operations cost zero tokens until the actual frame is delivered.",
   "author": {
@@ -19,7 +19,7 @@
   "support": "https://github.com/alexey-max-fedorov/deskview-mcp/issues",
   "icon": "icon.png",
   "keywords": ["camera", "desk-view", "continuity-camera", "vision", "macos", "agentic"],
-  "license": "PolyForm-Noncommercial-1.0.0",
+  "license": "LicenseRef-Deskview-MCP",
   "server": {
     "type": "node",
     "entry_point": "server/index.js",

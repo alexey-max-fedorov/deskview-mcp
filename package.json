@@ -1,6 +1,6 @@
 {
   "name": "deskview-mcp",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "type": "module",
   "main": "server/index.js",
   "scripts": {
