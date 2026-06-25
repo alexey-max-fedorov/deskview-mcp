@@ -22,7 +22,7 @@ jobs:
 
       - name: Update dependencies in root
         working-directory: .
-        run: pnpm update
+        run: pnpm update --latest
 
       - name: Commit changes
         run: |
